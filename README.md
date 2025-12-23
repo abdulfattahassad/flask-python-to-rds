@@ -25,3 +25,6 @@ mysql -h db.c18m8comuyav.us-east-1.rds.amazonaws.com -u admin -p
 
 - select * from customer;
 
+
+---- when we deploy python on ubtunt you need virual enviroment which you can find it 
+
