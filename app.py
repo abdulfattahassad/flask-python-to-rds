@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request 
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Love6000@localhostdb.c18m8comuyav.us-east-1.rds.amazonaws.com/dbname'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:Love6000@db.c18m8comuyav.us-east-1.rds.amazonaws.com/db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -14,7 +14,7 @@ class Customer(db.Model):
     email = db.Column(db.String(120), nullable=False)
     msg = db.Column(db.String(120), nullable=False)
 
-@app.route('/home', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         name = request.form['name']
@@ -32,6 +32,4 @@ def home():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()   # create tables
-    app.run(debug=True)
-
-
+    app.run(debug=True, host='0.0.0.0')
